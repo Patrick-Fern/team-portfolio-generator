@@ -1,0 +1,23 @@
+{
+  "name": "team-portfolio-generator",
+  "version": "1.0.0",
+  "description": "An application that generates a webpage that displays a team's basic info",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Patrick-Fern/team-portfolio-generator.git"
+  },
+  "author": "Patrick Fernbach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Patrick-Fern/team-portfolio-generator/issues"
+  },
+  "homepage": "https://github.com/Patrick-Fern/team-portfolio-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.5.1"
+  }
+}
