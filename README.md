@@ -22,6 +22,7 @@
 
   ## Usage Information
   Can be used to keep track of a growing team's contact info
+  https://bootcampspot.instructuremedia.com/embed/fc5f08bb-ab68-4936-854c-07d95ffcf03e
 
   ## License 
   
