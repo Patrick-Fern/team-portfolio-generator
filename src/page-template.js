@@ -48,17 +48,16 @@ function generateCard(data) {
                 </div>
                 `
                 break;
-
-        }
-    }
-}
+        };
+    };
+};
  
 
 
 
 
 
-function generatePage(data) {
+async function generatePage(data) {
     return `
     <!DOCTYPE html> 
     <html lang="en"> 

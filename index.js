@@ -75,7 +75,13 @@ const nextEmployee = function() {
     }).then(function(answer){
         switch(answer.nextEmployee){
             case "No":
-                teamTemplate(team);
+                generatePage(team)
+                .then(pageHtml => {writeFile(pageHtml);
+                }).then(writeFileResponse =>{
+                    console.log(writeFileResponse);
+                }).catch(err => {
+                    console.log(err);
+                });  
                 break;
             case "Engineer":
                 enginnerEmployee();
@@ -124,7 +130,7 @@ function buildManager() {
 
 function writeFile(fileContent) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist.index.html', fileContent, err => {
+        fs.writeFile('./dist/index.html', fileContent, err => {
             if (err) {
                 reject(err);
                 return;
@@ -139,15 +145,16 @@ function writeFile(fileContent) {
 
 
 
-function teamTemplate(data){
+// function teamTemplate(data){
 
-    generatePage(data).then(pageHtml => {writeFile(pageHtml);
-    }).then(writeFileResponse =>{
-        console.log(writeFileResponse);
-    }).catch(err => {
-        console.log(err);
-    });  
-};
+//     generatePage(data)
+//     .then(pageHtml => {writeFile(pageHtml);
+//     }).then(writeFileResponse =>{
+//         console.log(writeFileResponse);
+//     }).catch(err => {
+//         console.log(err);
+//     });  
+// };
 
 buildManager();
 
