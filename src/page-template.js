@@ -1,15 +1,59 @@
-function generateManager(data) {
-    data.filter(({ officeNumber}) => )
-    return `
-    <div class="card  mb-3" style="max-width: 18rem;">
-        <div class="card-header text-white bg-primary">Header</div>
-        <div class="card-body text-dark bg-light">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-    `
+function generateCard(data) {
+    console.log(data);
+    for (i = 0; i < data.length; i++) {
+        let employee = data[i];
+        switch (employee.type) {
+            case "manager":
+                return `
+                <div class="card  mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-white bg-primary">
+                        <h5>${employee.name}</h5>
+                        <h6>Manager</h6>
+                    </div>
+                    <div class="card-body text-dark bg-light">    
+                        <p class="card-text">ID: ${employee.id} </p>
+                        <p class="card-text">Email: <a href="mailto:${employee.email}"> ${employee.email}</a></p>
+                        <p class="card-text">Office number: ${employee.officeNumber}
+                    </div>
+                </div>
+                `;
+                break;
+            case "engineer":
+                return `
+                <div class="card  mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-white bg-primary">
+                        <h5>${employee.name}</h5>
+                        <h6>Engineer</h6>
+                    </div>
+                    <div class="card-body text-dark bg-light">    
+                        <p class="card-text">ID: ${employee.id} </p>
+                        <p class="card-text">Email: <a href="mailto:${employee.email}"> ${employee.email}</a></p>
+                        <p class="card-text">GitHub: <a target="_blank" href="https://github.com/${employee.github}"> ${employee.github} </a></p>
+                    </div>
+                </div>
+                `;
+                break;
+            case "intern":
+                return `
+                <div class="card  mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-white bg-primary">
+                        <h5>${employee.name}</h5>
+                        <h6>Intern</h6>
+                    </div>
+                    <div class="card-body text-dark bg-light">    
+                        <p class="card-text">ID: ${employee.id} </p>
+                        <p class="card-text">Email: <a href="mailto:${employee.email}"> ${employee.email}</a></p>
+                        <p class="card-text">School: ${employee.school} </p>
+                    </div>
+                </div>
+                `
+                break;
+
+        }
+    }
 }
+ 
+
 
 
 
@@ -37,13 +81,14 @@ function generatePage(data) {
         </div>
     <header> 
     <main>
-        ${generateManager(data)}
-        ${generateEngineer(data)}
-        ${generateIntern(data)}
-
+        <div class="container" id="card-container">
+            ${generateCard(data)}
+        </div>
     </main>
 
     </body>
     </html>
     `;
 }
+
+module.exports = generatePage;

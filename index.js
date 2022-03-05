@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
+const generatePage = require('./src/page-template');
+const fs = require('fs');
 let team = [];
 
 
@@ -73,7 +75,6 @@ const nextEmployee = function() {
     }).then(function(answer){
         switch(answer.nextEmployee){
             case "No":
-                console.log('no')
                 teamTemplate(team);
                 break;
             case "Engineer":
@@ -81,6 +82,7 @@ const nextEmployee = function() {
                 break;
             case "Intern":
                 internEmployee();
+                break;
 
         }
     });
@@ -120,20 +122,32 @@ function buildManager() {
     
 };
 
-buildManager();
+function writeFile(fileContent) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./dist.index.html', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+
+
 
 function teamTemplate(data){
 
-    let temp = '';
-    for(var i = 0; i < data.length; i++){
+    generatePage(data).then(pageHtml => {writeFile(pageHtml);
+    }).then(writeFileResponse =>{
+        console.log(writeFileResponse);
+    }).catch(err => {
+        console.log(err);
+    });  
+};
 
-        const id = data[i].getId();
-
-        temp = temp + `<div> ${id} </div>`
-
-    }
-
-    console.log(temp);
-}
-
+buildManager();
 
