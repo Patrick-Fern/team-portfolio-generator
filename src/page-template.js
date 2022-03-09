@@ -1,10 +1,12 @@
 function generateCard(data) {
-    console.log(data);
+    // console.log(data);
+    let pageElements = []
+
     for (i = 0; i < data.length; i++) {
         let employee = data[i];
         switch (employee.type) {
             case "manager":
-                return `
+                pageElements[i] = `
                 <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header text-white bg-primary">
                         <h5>${employee.name}</h5>
@@ -19,7 +21,7 @@ function generateCard(data) {
                 `;
                 break;
             case "engineer":
-                return `
+                pageElements[i] = `
                 <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header text-white bg-primary">
                         <h5>${employee.name}</h5>
@@ -34,7 +36,7 @@ function generateCard(data) {
                 `;
                 break;
             case "intern":
-                return `
+                pageElements[i] = `
                 <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header text-white bg-primary">
                         <h5>${employee.name}</h5>
@@ -50,6 +52,7 @@ function generateCard(data) {
                 break;
         };
     };
+    return pageElements;
 };
  
 
@@ -58,6 +61,7 @@ function generateCard(data) {
 
 
 async function generatePage(data) {
+   const cards = generateCard(data);
     return `
     <!DOCTYPE html> 
     <html lang="en"> 
@@ -81,7 +85,7 @@ async function generatePage(data) {
     <header> 
     <main>
         <div class="container" id="card-container">
-            ${generateCard(data)}
+          ${cards.map(card => card).join("")}        
         </div>
     </main>
 
